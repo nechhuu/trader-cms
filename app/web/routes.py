@@ -269,6 +269,23 @@ async def products_list(
     )
 
 
+@router.get("/products/browse", response_class=HTMLResponse)
+async def browse_products_page(
+    request: Request,
+    trader: Trader = Depends(get_trader_from_session)
+):
+    """Product browsing and selection page"""
+    cart = request.session.get("selection_cart", [])
+    return templates.TemplateResponse(
+        "products/browse.html",
+        {
+            "request": request,
+            "trader": trader,
+            "cart_count": len(cart)
+        }
+    )
+
+
 @router.get("/products/{product_id}/edit", response_class=HTMLResponse)
 async def edit_product_modal(
     request: Request,

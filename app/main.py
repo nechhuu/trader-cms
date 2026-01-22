@@ -28,6 +28,7 @@ from app.api.v1.products import router as products_router
 from app.api.v1.orders import router as orders_router
 from app.api.v1.categories import router as categories_router
 from app.api.v1.profile import router as profile_router
+from app.api.v1.browse import router as browse_router
 from app.web.routes import router as web_router
 
 logger = logging.getLogger(__name__)
@@ -53,6 +54,7 @@ app.include_router(products_router)
 app.include_router(orders_router)
 app.include_router(categories_router)
 app.include_router(profile_router)
+app.include_router(browse_router)
 
 
 @app.get("/health")
